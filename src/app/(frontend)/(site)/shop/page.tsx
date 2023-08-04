@@ -6,7 +6,7 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 async function getProducts<T>(): Promise<T[]> {
   const res = await fetch(`${process.env.BASE_URL}/api/product`, {
     next: {
-      tags: ["Category"],
+      tags: ["Product"],
     },
   });
   return res.json();

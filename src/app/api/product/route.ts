@@ -15,5 +15,6 @@ export const POST = async (request: NextRequest) => {
   const product = new ProductModel(body);
   await product.save();
   revalidateTag("FeaturedProduct");
+  revalidateTag("Product");
   return NextResponse.json(product);
 };
