@@ -4,7 +4,7 @@ import Image from "next/image";
 export default function ProductPage() {
   return (
     <div>
-      <div className="container mx-auto border-t">
+      <div className="container mx-auto">
         <div className="flex flex-col md:flex-row my-10 p-10 sm:p-0 justify-center gap-10 min-h-[500px]  ">
           <div className="relative  w-[400px] h-[400px] bg-gray-100">
             <Image src="/img/category-2.png" fill={true} alt="product" />

@@ -33,6 +33,7 @@ export const Header = () => {
                 Icon={ShoppingCartIcon}
                 label="My Cart"
                 subTitle="200"
+                url="/cart"
               />
               <div className="hidden sm:flex items-center gap-2">
                 <div className="w-8 aspect-square rounded-full relative bg-gray-300">
@@ -47,7 +48,7 @@ export const Header = () => {
           </div>
         </div>
       </div>
-      <div className="hidden sm:flex container mx-auto  justify-between py-4  px-3 xl:px-0">
+      <div className="hidden sm:flex container mx-auto  justify-between py-4  px-3 xl:px-0 border-b">
         <Navbar />
         <div className="text-primary flex items-center">
           <PhoneIcon className="w-4 aspect-square" />
