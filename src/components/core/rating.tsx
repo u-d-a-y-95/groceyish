@@ -17,6 +17,7 @@ export const Rating = ({ count }: IRatingProps) => {
           )}
         </>
       ))}
+      <span>(4)</span>
     </div>
   );
 };

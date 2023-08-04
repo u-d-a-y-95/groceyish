@@ -2,6 +2,9 @@ import { ProductCard } from "@/components/ui/ProductCard";
 import { AdsCard } from "@/components/ui/adsCard";
 import { Banner } from "@/components/ui/banner";
 import { CategoryCard } from "@/components/ui/categoryCard";
+import { FlatProductCard } from "@/components/ui/flatProductCard";
+import { FlatProductHolder } from "@/components/ui/flatProductHolder";
+import { OfferProductCard } from "@/components/ui/offerProductCard";
 
 const categories = [
   {
@@ -47,6 +50,17 @@ const products = [
     rating: 5,
   },
 ];
+const offerProducts = [
+  {
+    name: "lal Shak",
+    url: "/img/category-1.png",
+    price: 20,
+    category: "Vegetables",
+    rating: 4,
+    offerLabel: "Save 10%",
+    offerBgColor: "#FFD480",
+  },
+];
 
 export default function Home() {
   return (
@@ -90,6 +104,20 @@ export default function Home() {
             url="/img/ads-2.png"
             offerBgColor="#3BB77E"
           />
+        </div>
+        <div>
+          <h4 className="text-2xl py-7">Daily Best Sells</h4>
+          <div className="grid grid-cols-1  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5  justify-items-center md:justify-items-start">
+            {offerProducts.map((item, index) => (
+              <OfferProductCard key={index} {...item} />
+            ))}
+          </div>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 my-16">
+          <FlatProductHolder products={products} title="Top Sell" />
+          <FlatProductHolder products={products} title="Top Rated" />
+          <FlatProductHolder products={products} title="Trending Items" />
+          <FlatProductHolder products={products} title="Recently Added" />
         </div>
       </div>
     </main>
