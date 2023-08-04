@@ -65,7 +65,11 @@ const offerProducts = [
 export default function Home() {
   return (
     <main>
-      <Banner />
+      <Banner
+        title="Don’t miss our daily amazing deals."
+        description="Save up to 60% off on your first order"
+        url="/img/home-banner.png"
+      />
       <div className="container mx-auto py-10 px-5 xl:px-0">
         <div>
           <h4 className="text-2xl py-7">Explore Categories</h4>
@@ -120,6 +124,12 @@ export default function Home() {
           <FlatProductHolder products={products} title="Recently Added" />
         </div>
       </div>
+      <Banner
+        title="Shop Faster With Groceyish App"
+        description="Available on both IOS & Android"
+        // url="/img/home-banner-1.png"
+        bgColor="#FFD480"
+      />
     </main>
   );
 }
