@@ -5,12 +5,12 @@ export default function ProductPage() {
   return (
     <div>
       <div className="container mx-auto">
-        <div className="flex flex-col md:flex-row my-10 p-10 sm:p-0 justify-center gap-10 min-h-[500px]  ">
-          <div className="relative  w-[400px] h-[400px] bg-gray-100">
+        <div className="flex flex-col md:flex-row my-10 p-10 justify-center gap-10 min-h-[500px]  ">
+          <div className="relative md:flex-1  max-w-[400px] h-[250px] md:h-[300px] lg:h-[350px] bg-gray-100">
             <Image src="/img/category-2.png" fill={true} alt="product" />
           </div>
           <div className="flex-1 max-w-[600px]">
-            <h4 className="text-primary text-4xl font-bold">
+            <h4 className="text-primary text-2xl md:text-4xl font-bold">
               Health Pistachios
             </h4>
             <Rating count={4} />
@@ -25,7 +25,7 @@ export default function ProductPage() {
                 since the 1500s, when an unknown printer took a galley.
               </p>
             </div>
-            <div className="flex items-center gap-4 mt-5">
+            <div className="flex flex-col md:flex-row gap-4 mt-5">
               <p className="font-bold text-primary">
                 Stock :
                 <span className="border p-2 text-center ml-5 rounded w-24 inline-block border-primary">
