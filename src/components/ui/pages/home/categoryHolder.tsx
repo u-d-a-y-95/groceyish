@@ -8,7 +8,11 @@ interface ICategory {
 }
 
 async function getCategories<T>(): Promise<T[]> {
-  const res = await fetch(`${process.env.BASE_URL}/api/category`);
+  const res = await fetch(`${process.env.BASE_URL}/api/category`, {
+    next: {
+      tags: ["Category"],
+    },
+  });
   return res.json();
 }
 

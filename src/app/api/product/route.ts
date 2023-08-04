@@ -1,5 +1,19 @@
-import { NextResponse } from "next/server";
+import dbConnect from "@/helper/backend/dbconfig";
+import { ProductModel } from "@/helper/backend/models/product.model";
+import { revalidateTag } from "next/cache";
+import { NextRequest, NextResponse } from "next/server";
 
-export const GET = (request: Request) => {
-  return NextResponse.json([]);
+export const GET = async (request: NextRequest) => {
+  await dbConnect();
+  const products = await ProductModel.find();
+  return NextResponse.json(products);
+};
+
+export const POST = async (request: NextRequest) => {
+  await dbConnect();
+  const body = await request.json();
+  const product = new ProductModel(body);
+  await product.save();
+  revalidateTag("FeaturedProduct");
+  return NextResponse.json(product);
 };

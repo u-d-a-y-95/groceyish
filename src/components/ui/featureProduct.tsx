@@ -9,7 +9,11 @@ interface IProduct {
 }
 
 async function getFeatureProducts<T>(): Promise<T[]> {
-  const res = await fetch(`${process.env.BASE_URL}/api/product/features`);
+  const res = await fetch(`${process.env.BASE_URL}/api/product/features`, {
+    next: {
+      tags: ["FeaturedProduct"],
+    },
+  });
   return res.json();
 }
 
