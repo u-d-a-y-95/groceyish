@@ -124,12 +124,12 @@ export default function Home() {
           <FlatProductHolder products={products} title="Recently Added" />
         </div>
       </div>
-      <Banner
+      {/* <Banner
         title="Shop Faster With Groceyish App"
         description="Available on both IOS & Android"
         // url="/img/home-banner-1.png"
         bgColor="#FFD480"
-      />
+      /> */}
     </main>
   );
 }

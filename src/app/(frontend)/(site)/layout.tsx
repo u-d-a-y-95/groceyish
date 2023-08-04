@@ -3,6 +3,7 @@ import "../../globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Footer } from "@/components/layout/footer";
+import { Banner } from "@/components/ui/banner";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,6 +22,12 @@ export default function RootLayout({
       <body className={inter.className + " text-sm text-secondary"}>
         <Header />
         {children}
+        <Banner
+          title="Shop Faster With Groceyish App"
+          description="Available on both IOS & Android"
+          // url="/img/home-banner-1.png"
+          // bgColor="#FFD480"
+        />
         <Footer />
       </body>
     </html>
