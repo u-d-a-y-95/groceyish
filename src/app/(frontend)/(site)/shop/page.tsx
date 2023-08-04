@@ -65,8 +65,8 @@ const products = [
 export default function ShopPage() {
   return (
     <div>
-      <div className="container mx-auto flex my-10 gap-10">
-        <div className="min-w-[350px] border-r pr-10">
+      <div className="container mx-auto flex my-10 gap-10 px-5">
+        <div className="hidden lg:block min-w-[350px] border-r pr-10">
           <div className="text-xl font-semibold border-b pb-2 ">Filter</div>
 
           <div className="mt-10 flex flex-col gap-6">
@@ -112,9 +112,9 @@ export default function ShopPage() {
           </div>
         </div>
 
-        <div>
+        <div className="flex-1">
           <div className="">
-            <div className="flex w-5/12">
+            <div className="flex  sm:w-5/12">
               <input placeholder="search" className="border p-2 flex-1" />
               <button className=" bg-primary px-4 text-white rounded-e">
                 <MagnifyingGlassIcon className="w-5 h-5" />{" "}
@@ -122,14 +122,14 @@ export default function ShopPage() {
             </div>
             <div></div>
           </div>
-          <div className="my-5 grid grid-cols-1  md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-5  justify-items-center md:justify-items-start">
+          <div className="my-5 grid grid-cols-1 sm:grid-cols-2   md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-5  justify-items-center md:justify-items-start">
             {products.map((item, index) => (
               <ProductCard key={index} {...item} />
             ))}
           </div>
         </div>
       </div>
-      <div className="container mx-auto px-5 xl:px-0">
+      <div className=" container mx-auto px-5 xl:px-0">
         <div>
           <h4 className="text-2xl py-7">Featured Products</h4>
         </div>
