@@ -4,7 +4,7 @@ interface ICategory {
   name: string;
   url: string;
   itemCount: number;
-  color: string;
+  bgColor: string;
 }
 
 async function getCategories<T>(): Promise<T[]> {

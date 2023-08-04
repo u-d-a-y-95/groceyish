@@ -5,20 +5,20 @@ interface ICategoryCardProps {
   url: string;
   name: string;
   itemCount: number;
-  color: string;
+  bgColor: string;
 }
 
 export const CategoryCard = ({
   url,
   name,
   itemCount,
-  color,
+  bgColor,
 }: ICategoryCardProps) => {
   return (
     <Link href={""}>
       <div
         style={{
-          background: color,
+          background: bgColor,
         }}
         className="w-[100px] sm:w-[150px] h-[150px] sm:h-[200px] flex flex-col justify-center items-center gap-4 rounded"
       >
