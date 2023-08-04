@@ -17,7 +17,7 @@ async function getCategories<T>(): Promise<T[]> {
 }
 
 export const CategoryHolder = async () => {
-  const categories: ICategory[] = await getCategories<ICategory>();
+  const categories = await getCategories<ICategory>();
   return (
     <div className="container mx-auto py-10 px-5 xl:px-0">
       <div>

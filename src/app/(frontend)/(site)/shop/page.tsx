@@ -1,68 +1,18 @@
 import { ProductCard } from "@/components/ui/ProductCard";
+import { FeatureProducts } from "@/components/ui/featureProduct";
+import { IProduct } from "@/helper/dtos/product.dto";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 
-const products = [
-  {
-    name: "lal Shak",
-    url: "/img/category-1.png",
-    price: 20,
-    category: "Vegetables",
-    rating: 4,
-  },
-
-  {
-    name: "Apple",
-    url: "/img/category-2.png",
-    price: 20,
-    category: "Fruits",
-    rating: 3,
-  },
-  {
-    name: "Apple",
-    url: "/img/category-2.png",
-    price: 20,
-    category: "Fruits",
-    rating: 5,
-  },
-  {
-    name: "lal Shak",
-    url: "/img/category-1.png",
-    price: 20,
-    category: "Vegetables",
-    rating: 4,
-  },
-
-  {
-    name: "Apple",
-    url: "/img/category-2.png",
-    price: 20,
-    category: "Fruits",
-    rating: 3,
-  },
-  {
-    name: "Apple",
-    url: "/img/category-2.png",
-    price: 20,
-    category: "Fruits",
-    rating: 5,
-  },
-  {
-    name: "lal Shak",
-    url: "/img/category-1.png",
-    price: 20,
-    category: "Vegetables",
-    rating: 4,
-  },
-
-  {
-    name: "Apple",
-    url: "/img/category-2.png",
-    price: 20,
-    category: "Fruits",
-    rating: 3,
-  },
-];
-export default function ShopPage() {
+async function getProducts<T>(): Promise<T[]> {
+  const res = await fetch(`${process.env.BASE_URL}/api/product`, {
+    next: {
+      tags: ["Category"],
+    },
+  });
+  return res.json();
+}
+export default async function ShopPage() {
+  const products = await getProducts<IProduct>();
   return (
     <div>
       <div className="container mx-auto flex my-10 gap-10 px-5">
@@ -129,16 +79,7 @@ export default function ShopPage() {
           </div>
         </div>
       </div>
-      <div className=" container mx-auto px-5 xl:px-0">
-        <div>
-          <h4 className="text-2xl py-7">Featured Products</h4>
-        </div>
-        <div className="grid grid-cols-1  md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-5  justify-items-center md:justify-items-start">
-          {products.map((item, index) => (
-            <ProductCard key={index} {...item} />
-          ))}
-        </div>
-      </div>
+      <FeatureProducts />
     </div>
   );
 }

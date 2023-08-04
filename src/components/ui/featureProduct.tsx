@@ -1,12 +1,5 @@
+import { IProduct } from "@/helper/dtos/product.dto";
 import { ProductCard } from "./ProductCard";
-
-interface IProduct {
-  url: string;
-  name: string;
-  price: number;
-  rating: number;
-  category: string;
-}
 
 async function getFeatureProducts<T>(): Promise<T[]> {
   const res = await fetch(`${process.env.BASE_URL}/api/product/features`, {

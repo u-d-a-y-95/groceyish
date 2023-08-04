@@ -1,11 +1,9 @@
+import { ICategory } from "@/helper/dtos/category.dto";
 import Image from "next/image";
 import Link from "next/link";
 
-interface ICategoryCardProps {
-  url: string;
-  name: string;
+interface ICategoryCardProps extends ICategory {
   itemCount: number;
-  bgColor: string;
 }
 
 export const CategoryCard = ({

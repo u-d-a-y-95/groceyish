@@ -5,7 +5,7 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (request: NextRequest) => {
   await dbConnect();
-  const products = await ProductModel.find();
+  const products = await ProductModel.find().populate("category");
   return NextResponse.json(products);
 };
 

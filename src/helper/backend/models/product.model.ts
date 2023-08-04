@@ -14,7 +14,11 @@ const productSchema = new Schema({
     type: Number,
     required: true,
   },
-  categoryId: String,
+  category: {
+    type: Schema.ObjectId,
+    ref: "category",
+    required: true,
+  },
   rating: Number,
   url: String,
   isFeatured: {

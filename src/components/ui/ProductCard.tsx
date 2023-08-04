@@ -1,16 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-import { ShoppingCartIcon, StarIcon } from "@heroicons/react/24/outline";
-import { StarIcon as SolidStartIcon } from "@heroicons/react/24/solid";
+import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { Rating } from "../core/rating";
-
-interface IProductCardProps {
-  url: string;
-  name: string;
-  price: number;
-  rating: number;
-  category: string;
-}
+import { IProduct } from "@/helper/dtos/product.dto";
 
 export const ProductCard = ({
   url,
@@ -18,7 +10,7 @@ export const ProductCard = ({
   price,
   category,
   rating,
-}: IProductCardProps) => {
+}: IProduct) => {
   return (
     <Link href={""}>
       <div className="w-[200px] h-[300px] flex flex-col items-center gap-4 rounded border p-5">
@@ -26,7 +18,7 @@ export const ProductCard = ({
           <Image src={url} alt="category" fill={true} />
         </div>
         <div className="self-stretch">
-          <span className="text-gray-400 text-xs">{category}</span>
+          <span className="text-gray-400 text-xs">{category.name}</span>
           <h5 className="font-semibold">{name}</h5>
           <div className="my-1">
             <Rating count={rating} />
