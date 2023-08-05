@@ -1,23 +1,24 @@
+"use client";
 import { Rating } from "@/components/core/rating";
-import { IProduct } from "@/helper/dtos/product.dto";
+import { useGlobalContext } from "@/helper/frontend/state/globalContext";
+import { addToCart } from "@/helper/frontend/util";
 import Image from "next/image";
+import useSWR from "swr";
 
-const getProduct = async function <T>(id: string): Promise<T> {
-  const res = await fetch(`${process.env.BASE_URL}/api/product/${id}`, {
-    next: {
-      tags: ["Category"],
-    },
-  });
-  return res.json();
-};
-
-export default async function ProductPage({
-  params,
-}: {
-  params: { id: string };
-}) {
+const fetcher = (id: string) =>
+  fetch(`/api/product/${id}`).then((res) => res.json());
+export default function ProductPage({ params }: { params: { id: string } }) {
   const { id } = params;
-  const product = await getProduct<IProduct>(id);
+  const { data: product, error, isLoading } = useSWR(`${id}`, fetcher);
+
+  const { dispatch } = useGlobalContext();
+  if (error) return <div>failed to load</div>;
+  if (isLoading) return <div>loading...</div>;
+
+  const onClickHandler = (e: any) => {
+    e.preventDefault();
+    addToCart(dispatch, product);
+  };
   return (
     <div>
       <div className="container mx-auto">
@@ -46,7 +47,11 @@ export default async function ProductPage({
                   {product.stock}
                 </span>
               </p>
-              <button className="bg-primary text-white border-0 p-2 px-6 capitalize rounded">
+              <button
+                className="bg-primary text-white border-0 p-2 px-6 capitalize rounded"
+                type="button"
+                onClick={onClickHandler}
+              >
                 add to cart
               </button>
             </div>

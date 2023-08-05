@@ -1,5 +1,6 @@
 "use client";
 import { ProductCard } from "@/components/ui/ProductCard";
+import { Laoding } from "@/components/ui/loading";
 import useSWR from "swr";
 
 interface IFormInput {
@@ -11,7 +12,7 @@ export default function ShopPage() {
   // const { register } = useForm<IFormInput>({});
   const { data: products, error, isLoading } = useSWR("products", fetcher);
   if (error) return <div>failed to load</div>;
-  if (isLoading) return <div>loading...</div>;
+
   return (
     <div>
       <div className="container mx-auto flex my-10 gap-10 px-5">
@@ -73,13 +74,16 @@ export default function ShopPage() {
             </div>
           </form>
         </div>
-
-        <div className="flex-1">
-          <div className=" grid grid-cols-1 sm:grid-cols-2   md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-5  justify-items-center md:justify-items-start">
-            {products.map((item, index) => (
-              <ProductCard key={index} {...item} />
-            ))}
-          </div>
+        {}
+        <div className="flex-1 relative">
+          {isLoading && <Laoding />}
+          {!isLoading && (
+            <div className=" grid grid-cols-1 sm:grid-cols-2   md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-5  justify-items-center md:justify-items-start">
+              {products.map((item, index) => (
+                <ProductCard key={index} {...item} />
+              ))}
+            </div>
+          )}
         </div>
       </div>
       {/* <FeatureProducts /> */}

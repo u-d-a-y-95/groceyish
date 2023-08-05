@@ -6,6 +6,7 @@ import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { Rating } from "../core/rating";
 import { IProduct } from "@/helper/dtos/product.dto";
 import { useGlobalContext } from "@/helper/frontend/state/globalContext";
+import { addToCart } from "@/helper/frontend/util";
 
 export const ProductCard = ({
   url,
@@ -14,20 +15,12 @@ export const ProductCard = ({
   category,
   rating,
   _id,
+  ...rest
 }: IProduct) => {
   const { dispatch } = useGlobalContext();
   const onClickHandler = (e: any) => {
     e.preventDefault();
-    dispatch({
-      type: "ADD_TO_CART",
-      value: {
-        id: _id,
-        name,
-        price,
-        rating,
-        url,
-      },
-    });
+    addToCart(dispatch, { url, _id, rating, price, name, category, ...rest });
   };
   return (
     <Link href={`/shop/product/${_id}`} className="hover:shadow-md">
