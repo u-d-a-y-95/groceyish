@@ -7,7 +7,9 @@ if (!MONGODB_URL) {
     "Please define the MONGODB_URI environment variable inside .env.local"
   );
 }
-
+declare global {
+  var mongoose: any;
+}
 let cached = global.mongoose;
 
 if (!cached) {
@@ -19,7 +21,6 @@ const dbConnect = async () => {
     return cached.conn;
   }
 
-  // If a connection does not exist, we check if a promise is already in progress. If a promise is already in progress, we wait for it to resolve to get the connection
   if (!cached.promise) {
     const opts = {
       bufferCommands: false,
