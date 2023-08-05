@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 
 interface ICategoryCardProps extends ICategory {
-  itemCount: number;
+  itemCount?: number;
 }
 
 export const CategoryCard = ({
@@ -25,7 +25,9 @@ export const CategoryCard = ({
         </div>
         <div className="text-center">
           <h5 className="font-semibold">{name}</h5>
-          <span className="text-xs text-gray-400">{itemCount} items</span>
+          {itemCount && (
+            <span className="text-xs text-gray-400">{itemCount} items</span>
+          )}
         </div>
       </div>
     </Link>

@@ -56,9 +56,7 @@ export const GET = async (request: NextRequest) => {
   }
 
   const products = await ProductModel.aggregate(aggregatePipe).exec();
-  console.log(skip, limit);
   const silcedProduct = products.slice(skip, skip + limit);
-  console.log(silcedProduct);
   return NextResponse.json({
     count: products.length,
     data: silcedProduct,
