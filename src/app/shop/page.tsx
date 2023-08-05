@@ -1,31 +1,56 @@
 "use client";
-import { ProductCard } from "@/components/ui/ProductCard";
-import { Laoding } from "@/components/ui/loading";
+import { CheckBox } from "@/components/core/checkBox";
+import { ProductsList } from "@/components/ui/pages/shop/productsList";
+import { categoryFetcher } from "@/helper/frontend/apiHelper";
+import { queryFromObject } from "@/helper/frontend/util";
+import { useState } from "react";
+import { useForm } from "react-hook-form";
 import useSWR from "swr";
 
 interface IFormInput {
-  productName: string;
+  name: string;
+  price: number;
+  category: Array<any>;
+  sort: string;
 }
-const fetcher = () => fetch(`/api/product`).then((res) => res.json());
 
 export default function ShopPage() {
-  // const { register } = useForm<IFormInput>({});
-  const { data: products, error, isLoading } = useSWR("products", fetcher);
-  if (error) return <div>failed to load</div>;
+  const { register, handleSubmit, setValue, getValues } = useForm<IFormInput>(
+    {}
+  );
+  const {
+    data: category,
+    error,
+    isLoading,
+  } = useSWR(`category`, categoryFetcher);
+  const [path, setPath] = useState("");
 
+  const filterSubmitHandler = (value: IFormInput) => {
+    setPath(queryFromObject(value));
+  };
+  if (isLoading) return null;
   return (
     <div>
       <div className="container mx-auto flex my-10 gap-10 px-5">
         <div className="hidden lg:block min-w-[350px] border-r pr-10">
           <div className="text-xl font-semibold border-b pb-2">Filter</div>
 
-          <form>
+          <form onSubmit={handleSubmit(filterSubmitHandler)}>
             <div className="mt-10 flex flex-col gap-6">
+              <div>
+                <p className="font-semibold mb-2">Sort</p>
+                <select className="border p-2 w-full" {...register("sort")}>
+                  <option value="">None</option>
+                  <option value="asc">Low to Hight</option>
+                  <option value="desc">High to Low</option>
+                </select>
+              </div>
               <div>
                 <p className="font-semibold mb-2">Name</p>
                 <input
                   className="border p-2 w-full"
                   placeholder="Enter product name"
+                  {...register("name")}
                 />
               </div>
               <div>
@@ -33,60 +58,29 @@ export default function ShopPage() {
                 <input
                   className="border p-2 w-full"
                   placeholder="enter price"
+                  {...register("price")}
                 />
               </div>
               <div className="font-semibold mb-2">
-                <p className="font-semibold mb-2">Categpries</p>
+                <p className="font-semibold mb-2">Categories</p>
                 <div>
-                  <div className="flex items-center">
-                    <input
-                      type="checkbox"
-                      className=" w-4 h-4 checked:bg-secondary text-white checked:text-white"
-                      id="fruits"
-                    />
-                    <label className="ml-2 font-medium" htmlFor="fruits">
-                      Fruits
-                    </label>
-                  </div>
-                  <div className="flex items-center">
-                    <input
-                      type="checkbox"
-                      className=" w-4 h-4 checked:bg-secondary text-white checked:text-white"
-                      id="vegetables"
-                    />
-                    <label className="ml-2 font-medium" htmlFor="vegetables">
-                      Vegetables
-                    </label>
-                  </div>
-                  <div className="flex items-center">
-                    <input
-                      type="checkbox"
-                      className=" w-4 h-4 checked:bg-secondary text-white checked:text-white"
-                      id="nuts"
-                    />
-                    <label className="ml-2 font-medium" htmlFor="nuts">
-                      Nuts
-                    </label>
-                  </div>
+                  <CheckBox
+                    list={category}
+                    setValue={setValue}
+                    name="category"
+                  />
                 </div>
               </div>
-              <button className="bg-primary text-white p-3">Apply</button>
+              <button className="bg-primary text-white p-3" type="submit">
+                Apply
+              </button>
             </div>
           </form>
         </div>
-        {}
         <div className="flex-1 relative">
-          {isLoading && <Laoding />}
-          {!isLoading && (
-            <div className=" grid grid-cols-1 sm:grid-cols-2   md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-5  justify-items-center md:justify-items-start">
-              {products.map((item, index) => (
-                <ProductCard key={index} {...item} />
-              ))}
-            </div>
-          )}
+          <ProductsList path={path} />
         </div>
       </div>
-      {/* <FeatureProducts /> */}
     </div>
   );
 }
