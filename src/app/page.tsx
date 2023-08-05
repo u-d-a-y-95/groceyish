@@ -5,34 +5,37 @@ import { FlatProductHolder } from "@/components/ui/flatProductHolder";
 import { OfferProductCard } from "@/components/ui/offerProductCard";
 import { CategoryHolder } from "@/components/ui/pages/home/categoryHolder";
 
-const products = [
+const offerProducts = [
   {
-    name: "lal Shak",
-    url: "/img/category-1.png",
+    name: "Onion",
+    url: "/img/1691253567547.png",
     price: 20,
     category: "Vegetables",
     rating: 4,
+    offerLabel: "Save 10%",
+    offerBgColor: "#FFD480",
   },
-
   {
-    name: "Apple",
-    url: "/img/category-2.png",
+    name: "Pomegranate",
+    url: "/img/1691255668608.png",
     price: 20,
-    category: "Fruits",
-    rating: 3,
+    category: "Vegetables",
+    rating: 4,
+    offerLabel: "Save 10%",
+    offerBgColor: "#FFD480",
   },
   {
-    name: "Apple",
-    url: "/img/category-2.png",
+    name: "Onion",
+    url: "/img/1691253567547.png",
     price: 20,
-    category: "Fruits",
-    rating: 5,
+    category: "Vegetables",
+    rating: 4,
+    offerLabel: "Save 10%",
+    offerBgColor: "#FFD480",
   },
-];
-const offerProducts = [
   {
-    name: "lal Shak",
-    url: "/img/category-1.png",
+    name: "Pomegranate",
+    url: "/img/1691255668608.png",
     price: 20,
     category: "Vegetables",
     rating: 4,
@@ -81,18 +84,18 @@ export default function Home() {
           </div>
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 my-16">
-          <FlatProductHolder products={products} title="Top Sell" />
-          <FlatProductHolder products={products} title="Top Rated" />
-          <FlatProductHolder products={products} title="Trending Items" />
-          <FlatProductHolder products={products} title="Recently Added" />
+          <FlatProductHolder products={offerProducts} title="Top Sell" />
+          <FlatProductHolder products={offerProducts} title="Top Rated" />
+          <FlatProductHolder products={offerProducts} title="Trending Items" />
+          <FlatProductHolder products={offerProducts} title="Recently Added" />
         </div>
       </div>
-      {/* <Banner
+      <Banner
         title="Shop Faster With Groceyish App"
         description="Available on both IOS & Android"
         // url="/img/home-banner-1.png"
         bgColor="#FFD480"
-      /> */}
+      />
     </main>
   );
 }

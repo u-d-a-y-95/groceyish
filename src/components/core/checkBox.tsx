@@ -17,15 +17,18 @@ export const CheckBox = ({ list, name, setValue }: any) => {
   return (
     <div>
       {list &&
-        list.map((item: { name: string }, index: number) => (
+        list.map((item: { name: string; _id: string }, index: number) => (
           <div className="flex items-center" key={index}>
             <input
               type="checkbox"
               className=" w-4 h-4 checked:bg-secondary text-white checked:text-white"
               value={item.name}
+              id={item._id}
               onChange={changeHandler}
             />
-            <label className="ml-2 font-medium">{item.name}</label>
+            <label className="ml-2 font-medium" htmlFor={item._id}>
+              {item.name}
+            </label>
           </div>
         ))}
     </div>

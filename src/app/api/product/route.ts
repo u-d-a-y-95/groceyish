@@ -8,6 +8,8 @@ export const GET = async (request: NextRequest) => {
   const name = request.nextUrl.searchParams.get("name");
   const price = request.nextUrl.searchParams.get("price");
   const sort = request.nextUrl.searchParams.get("sort");
+  const skip = Number(request.nextUrl.searchParams.get("skip")) || 0;
+  const limit = Number(request.nextUrl.searchParams.get("limit")) || 8;
   const category =
     request.nextUrl.searchParams.get("category")?.split(",") || [];
 
@@ -34,6 +36,9 @@ export const GET = async (request: NextRequest) => {
       as: "category",
     },
   });
+  aggregatePipe.push({
+    $unwind: "$category",
+  });
 
   if (category?.length > 0) {
     aggregatePipe.push({
@@ -51,7 +56,13 @@ export const GET = async (request: NextRequest) => {
   }
 
   const products = await ProductModel.aggregate(aggregatePipe).exec();
-  return NextResponse.json(products);
+  console.log(skip, limit);
+  const silcedProduct = products.slice(skip, skip + limit);
+  console.log(silcedProduct);
+  return NextResponse.json({
+    count: products.length,
+    data: silcedProduct,
+  });
 };
 
 export const POST = async (request: NextRequest) => {

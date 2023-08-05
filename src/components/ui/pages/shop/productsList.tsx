@@ -2,15 +2,14 @@
 import { ProductCard } from "@/components/ui/ProductCard";
 import { Laoding } from "@/components/ui/loading";
 import { IProduct } from "@/helper/dtos/product.dto";
-import useSWR from "swr";
-const fetcher = (query: string) => fetch(query).then((res) => res.json());
 
-export const ProductsList = ({ path }: { path: string }) => {
-  const {
-    data: products,
-    error,
-    isLoading,
-  } = useSWR(`/api/product${path}`, fetcher);
+export const ProductsList = ({
+  products,
+  isLoading,
+}: {
+  products: IProduct[];
+  isLoading: boolean;
+}) => {
   if (isLoading) return <Laoding />;
   return (
     <>

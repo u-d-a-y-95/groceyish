@@ -1,9 +1,9 @@
 "use client";
 import { CheckBox } from "@/components/core/checkBox";
 import { ProductsList } from "@/components/ui/pages/shop/productsList";
-import { categoryFetcher } from "@/helper/frontend/apiHelper";
+import { categoryFetcher, productFetcher } from "@/helper/frontend/apiHelper";
 import { queryFromObject } from "@/helper/frontend/util";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import useSWR from "swr";
 
@@ -15,17 +15,19 @@ interface IFormInput {
 }
 
 export default function ShopPage() {
+  const [path, setPath] = useState("");
+  const [pageNo, setPageNo] = useState(0);
+  const { data: res, isLoading: productLoading } = useSWR(
+    `/api/product?${path}&skip=${pageNo * 8}`,
+    productFetcher
+  );
   const { register, handleSubmit, setValue, getValues } = useForm<IFormInput>(
     {}
   );
-  const {
-    data: category,
-    error,
-    isLoading,
-  } = useSWR(`category`, categoryFetcher);
-  const [path, setPath] = useState("");
+  const { data: category, isLoading } = useSWR(`category`, categoryFetcher);
 
   const filterSubmitHandler = (value: IFormInput) => {
+    setPageNo(0);
     setPath(queryFromObject(value));
   };
   if (isLoading) return null;
@@ -78,7 +80,27 @@ export default function ShopPage() {
           </form>
         </div>
         <div className="flex-1 relative">
-          <ProductsList path={path} />
+          <ProductsList products={res?.data} isLoading={productLoading} />
+
+          <div className="text-primary flex justify-end gap-5 my-5 font-bold">
+            <button
+              className=" disabled:cursor-not-allowed"
+              type="button"
+              onClick={() => setPageNo((pageNo) => pageNo - 1)}
+              disabled={pageNo < 1}
+            >
+              Prev
+            </button>
+            <button className="border p-2 px-4">{pageNo + 1}</button>
+            <button
+              className=" disabled:cursor-not-allowed"
+              type="button"
+              onClick={() => setPageNo((pageNo) => pageNo + 1)}
+              disabled={(pageNo + 1) * 8 > res?.count}
+            >
+              Next
+            </button>
+          </div>
         </div>
       </div>
     </div>

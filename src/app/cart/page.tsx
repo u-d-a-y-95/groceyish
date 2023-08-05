@@ -1,48 +1,31 @@
-import { CartTable } from "@/components/ui/cartTable";
+"use client";
+import { CartTable } from "@/components/ui/pages/cart/cartTable";
+import { OrderSummary } from "@/components/ui/pages/cart/orderSummary";
+import { useGlobalContext } from "@/helper/frontend/state/globalContext";
+import Link from "next/link";
 
 export default function CartPage() {
+  const {
+    state: { cart },
+    dispatch,
+  } = useGlobalContext();
+  if (cart.length < 1) {
+    return (
+      <div className="flex flex-col justify-center items-center text-4xl h-[400px] text-primary font-bold capitalize">
+        No product added
+        <Link href="/shop" className="underline text-sky-500 text-sm my-2">
+          Go to shop
+        </Link>
+      </div>
+    );
+  }
   return (
     <div className="container mx-auto px-5 flex flex-col lg:flex-row gap-10 my-10 justify-between xl:px-0">
       <div className="">
-        <div className="text-2xl font-semibold underline decoration-wavy">
-          Products
-        </div>
         <CartTable />
       </div>
       <div className=" self-stretch">
-        <div className="text-2xl font-semibold underline decoration-wavy m">
-          Order Summary
-        </div>
-
-        <div className="flex justify-end my-5 md:my-10">
-          <table className="w-full">
-            <tbody>
-              <tr className="w-full">
-                <td className="w-64 font-semibold py-2">Sub Total</td>
-                <td className="text-right">$500</td>
-              </tr>
-              <tr>
-                <td>Shipping Cost</td>
-                <td className="text-right py-2">50</td>
-              </tr>
-              <tr>
-                <td>Vat</td>
-                <td className="text-right py-2">50</td>
-              </tr>
-              <tr>
-                <td>Discount</td>
-                <td className="text-right py-2">100</td>
-              </tr>
-              <tr className="border-t">
-                <td className="font-bold text-xl py-5">Total</td>
-                <td className="font-bold text-xl">500</td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div>
-          <button className="bg-primary text-white w-full p-3">Checkout</button>
-        </div>
+        <OrderSummary />
       </div>
     </div>
   );

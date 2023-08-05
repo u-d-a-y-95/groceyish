@@ -11,7 +11,7 @@ export const MarketingCard = ({
   description,
 }: IMarketingCardProps) => {
   return (
-    <div className="flex items-center gap-6 max-w-[300px] ">
+    <div className="flex items-center gap-6 max-w-[300px] p-5 border hover:shadow-md ">
       <div className="relative h-2/4 w-3/12">
         <Image src={url} fill={true} alt={`${title} promo`} />
       </div>

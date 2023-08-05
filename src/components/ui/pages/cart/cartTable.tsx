@@ -30,6 +30,9 @@ export const CartTable = () => {
 
   return (
     <>
+      <div className="text-2xl font-semibold underline decoration-wavy">
+        Products
+      </div>
       <table className="hidden md:table border my-10">
         <thead>
           <tr>

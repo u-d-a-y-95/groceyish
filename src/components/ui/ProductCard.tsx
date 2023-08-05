@@ -24,8 +24,8 @@ export const ProductCard = ({
   };
   return (
     <Link href={`/shop/product/${_id}`} className="hover:shadow-md">
-      <div className="w-[200px] h-[300px] flex flex-col items-center gap-4 rounded border p-5">
-        <div className="relative w-[150px] aspect-square">
+      <div className="w-[200px] h-[280px] flex flex-col items-center gap-4 rounded border p-5">
+        <div className="relative w-[130px] aspect-square">
           <Image src={url} alt="category" fill={true} />
         </div>
         <div className="self-stretch">
