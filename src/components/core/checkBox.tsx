@@ -13,6 +13,7 @@ export const CheckBox = ({ list, name, setValue }: any) => {
   };
   useEffect(() => {
     setValue(name, state);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [state]);
   return (
     <div>
