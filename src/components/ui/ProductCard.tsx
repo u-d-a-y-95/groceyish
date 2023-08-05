@@ -1,8 +1,11 @@
+"use client";
+
 import Image from "next/image";
 import Link from "next/link";
 import { ShoppingCartIcon } from "@heroicons/react/24/outline";
 import { Rating } from "../core/rating";
 import { IProduct } from "@/helper/dtos/product.dto";
+import { useGlobalContext } from "@/helper/frontend/state/globalContext";
 
 export const ProductCard = ({
   url,
@@ -12,6 +15,19 @@ export const ProductCard = ({
   rating,
   _id,
 }: IProduct) => {
+  const { dispatch } = useGlobalContext();
+  const onClickHandler = (e: any) => {
+    e.preventDefault();
+    dispatch({
+      type: "ADD_TO_CART",
+      value: {
+        id: _id,
+        name,
+        price,
+        rating,
+      },
+    });
+  };
   return (
     <Link href={`/shop/product/${_id}`}>
       <div className="w-[200px] h-[300px] flex flex-col items-center gap-4 rounded border p-5">
@@ -26,7 +42,11 @@ export const ProductCard = ({
           </div>
           <div className="flex justify-between mt-5">
             <span>${price}</span>
-            <button className="text-primary flex items-center">
+            <button
+              className="text-primary flex items-center"
+              type="button"
+              onClick={onClickHandler}
+            >
               <ShoppingCartIcon className="w-4 aspect-square" />
               Add
             </button>

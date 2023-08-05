@@ -1,3 +1,4 @@
+"use client";
 import Image from "next/image";
 
 import {
@@ -10,8 +11,12 @@ import { FilterButton } from "../core/filterButton";
 import Link from "next/link";
 import { BadgeButton } from "../core/badgeButton";
 import { Navbar } from "./navbar";
+import { useGlobalContext } from "@/helper/frontend/state/globalContext";
 
 export const Header = () => {
+  const {
+    state: { cart },
+  } = useGlobalContext();
   return (
     <div>
       <div className="border-b">
@@ -23,7 +28,7 @@ export const Header = () => {
               </Link>
             </div>
 
-            <div className="hidden">
+            <div className="hidden lg:block">
               <FilterButton />
             </div>
 
@@ -34,6 +39,7 @@ export const Header = () => {
                 label="My Cart"
                 subTitle="200"
                 url="/cart"
+                count={cart.length}
               />
               <div className="hidden sm:flex items-center gap-2">
                 <div className="w-8 aspect-square rounded-full relative bg-gray-300">
