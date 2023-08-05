@@ -13,7 +13,7 @@ export const CategoryCard = ({
   bgColor,
 }: ICategoryCardProps) => {
   return (
-    <Link href={""}>
+    <Link href={""} className="hover:shadow-md">
       <div
         style={{
           background: bgColor,

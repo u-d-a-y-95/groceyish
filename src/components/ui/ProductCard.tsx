@@ -30,7 +30,7 @@ export const ProductCard = ({
     });
   };
   return (
-    <Link href={`/shop/product/${_id}`}>
+    <Link href={`/shop/product/${_id}`} className="hover:shadow-md">
       <div className="w-[200px] h-[300px] flex flex-col items-center gap-4 rounded border p-5">
         <div className="relative w-[150px] aspect-square">
           <Image src={url} alt="category" fill={true} />
@@ -44,7 +44,7 @@ export const ProductCard = ({
           <div className="flex justify-between mt-5">
             <span>${price}</span>
             <button
-              className="text-primary flex items-center"
+              className="text-primary flex items-center hover:font-bold"
               type="button"
               onClick={onClickHandler}
             >

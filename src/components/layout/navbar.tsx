@@ -13,7 +13,10 @@ export const Navbar = () => {
             key={index}
             className={pathname === item.url ? "text-primary font-bold" : ""}
           >
-            <Link className="flex gap-1 xl:gap-2" href={item.url}>
+            <Link
+              className="flex gap-1 xl:gap-2 hover:text-primary"
+              href={item.url}
+            >
               <item.Icon className="w-4 aspect-square" />
               {item.label}
             </Link>
