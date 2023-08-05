@@ -1,4 +1,5 @@
 import dbConnect from "@/helper/backend/dbconfig";
+import { CategoryModel } from "@/helper/backend/models/category.model";
 import { ProductModel } from "@/helper/backend/models/product.model";
 import { revalidateTag } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
@@ -9,7 +10,10 @@ export const GET = async (
 ) => {
   await dbConnect();
   const { id } = params;
-  const res = await ProductModel.findById(id).populate("category");
+  const res = await ProductModel.findById(id).populate({
+    path: "category",
+    model: CategoryModel,
+  });
   return NextResponse.json(res);
 };
 

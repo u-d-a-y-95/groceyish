@@ -1,11 +1,7 @@
 "use client";
 import { ProductCard } from "@/components/ui/ProductCard";
-import { FeatureProducts } from "@/components/ui/featureProduct";
 import useSWR from "swr";
 
-// function getProducts<T>() {
-//   return fetch(`/api/product`).then((res) => res.json());
-// }
 interface IFormInput {
   productName: string;
 }
@@ -80,9 +76,9 @@ export default function ShopPage() {
 
         <div className="flex-1">
           <div className=" grid grid-cols-1 sm:grid-cols-2   md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-4 gap-5  justify-items-center md:justify-items-start">
-            {/* {products.map((item, index) => (
+            {products.map((item, index) => (
               <ProductCard key={index} {...item} />
-            ))} */}
+            ))}
           </div>
         </div>
       </div>
