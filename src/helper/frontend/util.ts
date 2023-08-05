@@ -7,7 +7,7 @@ export const addToCart = (dispatch: any, obj: IProduct) => {
   });
 };
 
-export const queryFromObject = (obj: Object) => {
+export const queryFromObject = (obj: any) => {
   const keys = Object.keys(obj);
   if (keys.length < 1) return "";
   let path = "";
