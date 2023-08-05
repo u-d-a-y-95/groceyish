@@ -1,3 +1,6 @@
+"use client";
+import { REMOVE_FROM_CART } from "@/helper/frontend/state/actionType";
+import { useGlobalContext } from "@/helper/frontend/state/globalContext";
 import Image from "next/image";
 
 const TH = ({ label }: any) => {
@@ -5,9 +8,28 @@ const TH = ({ label }: any) => {
 };
 
 export const CartTable = () => {
+  const {
+    state: { cart },
+    dispatch,
+  } = useGlobalContext();
+
+  const addToCart = (id: string) => {
+    dispatch({
+      type: "ADD_TO_CART",
+      value: {
+        id,
+      },
+    });
+  };
+  const removeFromCart = (id: string) => {
+    dispatch({
+      type: REMOVE_FROM_CART,
+      value: id,
+    });
+  };
+
   return (
     <>
-      {" "}
       <table className="hidden md:table border my-10">
         <thead>
           <tr>
@@ -20,56 +42,36 @@ export const CartTable = () => {
           </tr>
         </thead>
         <tbody>
-          <tr className="border">
-            <td className="px-4">1</td>
-            <td className="p-5">
-              <div className="bg-gray-100 rounded">
-                <Image
-                  src="/img/category-1.png"
-                  alt="product"
-                  width={80}
-                  height={80}
-                />
-              </div>
-            </td>
-            <td className=" px-4">Health Pistachios</td>
-            <td className=" px-4">$250</td>
-            <td className=" px-4">
-              <button className=" border border-primary rounded  text-primary w-6">
-                -
-              </button>
-              <span className=" mx-2 p-2 min-w-20 inline-block">2</span>
-              <button className="border-none bg-primary text-white w-6 rounded">
-                +
-              </button>
-            </td>
-            <td className=" px-4">$500</td>
-          </tr>
-          <tr className="border">
-            <td className="px-4">1</td>
-            <td className="p-5">
-              <div className="bg-gray-100 rounded">
-                <Image
-                  src="/img/category-2.png"
-                  alt="product"
-                  width={80}
-                  height={80}
-                />
-              </div>
-            </td>
-            <td className=" px-4">Health Pistachios</td>
-            <td className=" px-4">$250</td>
-            <td className=" px-4">
-              <button className=" border border-primary rounded  text-primary w-6">
-                -
-              </button>
-              <span className=" mx-2 p-2 min-w-20 inline-block">2</span>
-              <button className="border-none bg-primary text-white w-6 rounded">
-                +
-              </button>
-            </td>
-            <td className=" px-4">$500</td>
-          </tr>
+          {cart.map(({ id, item, count }, index: number) => (
+            <tr className="border" key={index}>
+              <td className="px-4">{index + 1}</td>
+              <td className="p-5">
+                <div className="bg-gray-100 rounded">
+                  <Image src={item.url} alt="product" width={80} height={80} />
+                </div>
+              </td>
+              <td className=" px-4">{item.name}</td>
+              <td className=" px-4">${item.price}</td>
+              <td className=" px-4">
+                <button
+                  type="button"
+                  className=" border border-primary rounded  text-primary w-6"
+                  onClick={(e) => removeFromCart(id)}
+                >
+                  -
+                </button>
+                <span className=" mx-2 p-2 min-w-20 inline-block">{count}</span>
+                <button
+                  type="button"
+                  className="border-none bg-primary text-white w-6 rounded"
+                  onClick={(e) => addToCart(id)}
+                >
+                  +
+                </button>
+              </td>
+              <td className=" px-4">${item.price * count}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
       <table className="md:hidden border my-5">
@@ -80,33 +82,32 @@ export const CartTable = () => {
           </tr>
         </thead>
         <tbody>
-          <tr className="border">
-            <td className="w-full">
-              <div className="flex items-center gap-3">
-                <Image
-                  src="/img/category-1.png"
-                  alt="product"
-                  width={80}
-                  height={80}
-                />
-                <div>
-                  Health Pistachios
-                  <p>$250</p>
-                  <div className="">
-                    <button className=" border border-primary rounded  text-primary w-6">
-                      -
-                    </button>
-                    <span className=" mx-2 p-2 min-w-20 inline-block">2</span>
-                    <button className="border-none bg-primary text-white w-6 rounded">
-                      +
-                    </button>
+          {cart.map(({ item, count }, index: number) => (
+            <tr className="border" key={index}>
+              <td className="w-full">
+                <div className="flex items-center gap-3">
+                  <Image src={item.url} alt="product" width={80} height={80} />
+                  <div>
+                    {item.name}
+                    <p>${item.price}</p>
+                    <div className="">
+                      <button className=" border border-primary rounded  text-primary w-6">
+                        -
+                      </button>
+                      <span className=" mx-2 p-2 min-w-20 inline-block">
+                        {count}
+                      </span>
+                      <button className="border-none bg-primary text-white w-6 rounded">
+                        +
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </td>
+              </td>
 
-            <td className=" px-4">$500</td>
-          </tr>
+              <td className=" px-4">${item.price * count}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </>

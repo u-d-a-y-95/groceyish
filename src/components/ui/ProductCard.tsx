@@ -25,6 +25,7 @@ export const ProductCard = ({
         name,
         price,
         rating,
+        url,
       },
     });
   };
