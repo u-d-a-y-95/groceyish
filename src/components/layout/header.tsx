@@ -37,9 +37,12 @@ export const Header = () => {
               <BadgeButton
                 Icon={ShoppingCartIcon}
                 label="My Cart"
-                subTitle="200"
                 url="/cart"
                 count={cart.length}
+                subTitle={cart.reduce(
+                  (acc, item) => acc + item.count * item.item.price,
+                  0
+                )}
               />
               <div className="hidden sm:flex items-center gap-2">
                 <div className="w-8 aspect-square rounded-full relative bg-gray-300">

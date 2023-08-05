@@ -8,5 +8,5 @@ export const POST = async (request: NextRequest) => {
   const buffer = Buffer.from(await image.arrayBuffer());
   const fileName = `${new Date().getTime()}.${ext}`;
   await fs.writeFile(`public/upload/${fileName}`, buffer);
-  return NextResponse.json("ok");
+  return NextResponse.json(fileName);
 };

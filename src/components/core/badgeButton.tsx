@@ -4,7 +4,7 @@ import { ReactNode } from "react";
 interface IBadgeButtonProps {
   Icon: any;
   label?: string;
-  subTitle?: string;
+  subTitle?: any;
   url?: string;
   count?: number;
 }
@@ -27,7 +27,9 @@ export const BadgeButton = ({
       </div>
       <div className="hidden sm:flex flex-col text-xs items-start">
         <span className="">{label}</span>
-        <span className="text-primary text-[.6rem] ">{subTitle}</span>
+        {subTitle && (
+          <span className="text-primary text-[.6rem] ">{subTitle}</span>
+        )}
       </div>
     </Link>
   );
