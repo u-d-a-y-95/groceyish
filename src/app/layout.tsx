@@ -1,5 +1,5 @@
 import { Header } from "@/components/layout/header";
-import "../../globals.css";
+import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import { Footer } from "@/components/layout/footer";
@@ -24,12 +24,6 @@ export default function RootLayout({
         <Provider>
           <Header />
           {children}
-          <Banner
-            title="Shop Faster With Groceyish App"
-            description="Available on both IOS & Android"
-            // url="/img/home-banner-1.png"
-            // bgColor="#FFD480"
-          />
           <Footer />
         </Provider>
       </body>
