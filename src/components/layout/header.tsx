@@ -39,10 +39,12 @@ export const Header = () => {
                 url="/cart"
                 count={cart.length}
                 subTitle={
-                  cart.reduce(
-                    (acc, item) => acc + item.count * item.item.price,
-                    0
-                  ) || ""
+                  cart
+                    .reduce(
+                      (acc, item) => acc + item.count * item.item.price,
+                      0
+                    )
+                    .toFixed(2) || ""
                 }
               />
               <div className="hidden sm:flex items-center gap-2">

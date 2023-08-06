@@ -47,8 +47,8 @@ export default function ShopPage() {
                   <p className="font-semibold mb-2">Sort</p>
                   <select className="border p-2 w-full" {...register("sort")}>
                     <option value="">None</option>
-                    <option value="asc">Low to Hight</option>
-                    <option value="desc">High to Low</option>
+                    <option value="asc">Price: Low to Hight</option>
+                    <option value="desc">Price: High to Low</option>
                   </select>
                 </div>
                 <div className="hidden md:block">
