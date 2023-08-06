@@ -23,7 +23,6 @@ export const Provider = ({ children }: any) => {
   useEffect(() => {
     let data = localStorage.getItem("groceyish-cart") || false;
     if (data) {
-      data = atob(data);
       dispatch({
         type: INIT_STORE,
         value: JSON.parse(data) || initialState,
@@ -33,7 +32,6 @@ export const Provider = ({ children }: any) => {
 
   useEffect(() => {
     let data = JSON.stringify(state);
-    data = btoa(data);
     localStorage.setItem("groceyish-cart", data);
   }, [state]);
 
