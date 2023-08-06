@@ -88,7 +88,7 @@ export const CartTable = () => {
           </tr>
         </thead>
         <tbody>
-          {cart.map(({ item, count }, index: number) => (
+          {cart.map(({ id, item, count }, index: number) => (
             <tr className="border" key={index}>
               <td className="w-full">
                 <div className="flex items-center gap-3">
@@ -97,13 +97,22 @@ export const CartTable = () => {
                     {item.name}
                     <p>${item.price}</p>
                     <div className="">
-                      <button className=" border border-primary rounded  text-primary w-6">
+                      <button
+                        type="button"
+                        className=" border border-primary rounded  text-primary w-6"
+                        onClick={(e) => removeFromCart(id)}
+                      >
                         -
                       </button>
                       <span className=" mx-2 p-2 min-w-20 inline-block">
                         {count}
                       </span>
-                      <button className="border-none bg-primary text-white w-6 rounded">
+                      <button
+                        type="button"
+                        className="border-none bg-primary text-white w-6 rounded disabled:bg-gray-400 disabled:cursor-not-allowed"
+                        onClick={(e) => addToCart(id)}
+                        disabled={item.stock <= count}
+                      >
                         +
                       </button>
                     </div>
@@ -111,7 +120,7 @@ export const CartTable = () => {
                 </div>
               </td>
 
-              <td className=" px-4">${item.price * count}</td>
+              <td className=" px-4">${(item.price * count).toFixed(2)}</td>
             </tr>
           ))}
         </tbody>
