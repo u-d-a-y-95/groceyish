@@ -10,23 +10,27 @@ Welcome to Groceyish, your one-stop solution for all your daily grocery needs.
 - Database: MongoDB
 - Deployment: Vercel
 
+### Live
+Open [Grceyish Shop](https://groceyish-shop.vercel.app/) with your browser to see the result.
 
-### Getting Started
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
-
-Open [https://groceyish-shop.vercel.app/](Grceyish Shop) with your browser to see the result.
 
 ### Api Documentation
 
-postman : [https://www.postman.com/bold-crescent-889349/workspace/groceyish]
+postman : https://www.postman.com/bold-crescent-889349/workspace/groceyish
 
-## Deploy on Vercel
 
-visit: [https://groceyish-shop.vercel.app/]
+### Getting Started
+
+- clone repo
+
+```bash
+npm i
+npm run dev
+
+```
+
+
+
+
+
+
