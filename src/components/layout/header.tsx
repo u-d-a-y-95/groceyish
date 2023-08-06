@@ -5,7 +5,6 @@ import {
   HeartIcon,
   ShoppingCartIcon,
   PhoneIcon,
-  Bars4Icon,
 } from "@heroicons/react/24/outline";
 import { FilterButton } from "../core/filterButton";
 import Link from "next/link";
@@ -39,27 +38,24 @@ export const Header = () => {
                 label="My Cart"
                 url="/cart"
                 count={cart.length}
-                subTitle={cart.reduce(
-                  (acc, item) => acc + item.count * item.item.price,
-                  0
-                )}
+                subTitle={
+                  cart.reduce(
+                    (acc, item) => acc + item.count * item.item.price,
+                    0
+                  ) || ""
+                }
               />
               <div className="hidden sm:flex items-center gap-2">
-                <div className="w-8 aspect-square rounded-full relative bg-gray-300">
-                  {/* <Image src="/img/logo.png" alt="logo" fill={true} /> */}
-                </div>
+                <div className="w-8 aspect-square rounded-full relative bg-gray-200"></div>
                 <span>Saiful Islam</span>
               </div>
-              <button className="sm:hidden">
-                <Bars4Icon className="w-7 h-7" />
-              </button>
             </div>
           </div>
         </div>
       </div>
-      <div className="hidden sm:flex container mx-auto  justify-between py-4  px-3 xl:px-0 border-b">
+      <div className="sm:flex container mx-auto  justify-between py-4  px-3 xl:px-0 border-b">
         <Navbar />
-        <div className="text-primary flex items-center">
+        <div className="hidden text-primary sm:flex items-center">
           <PhoneIcon className="w-4 aspect-square" />
           <span>1233-7777</span>
           <span className="ml-1 lg:ml-3 text-xs text-secondary">

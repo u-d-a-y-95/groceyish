@@ -18,18 +18,13 @@ export const navRoutes: INavRoutes[] = [
     Icon: HomeIcon,
   },
   {
-    label: "Hot deal ",
-    url: "/hot-deal",
-    Icon: FireIcon,
-  },
-  {
-    label: "Promotions",
-    url: "/promotions",
-    Icon: SwatchIcon,
-  },
-  {
     label: "Shop",
     url: "/shop",
     Icon: GiftIcon,
+  },
+  {
+    label: "Hot deal ",
+    url: "/hot-deal",
+    Icon: FireIcon,
   },
 ];
