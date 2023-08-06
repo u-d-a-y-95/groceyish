@@ -1,6 +1,15 @@
-## Overview
+## Groceyish - Your Online Grocery Store
 
-This is a ecommerce
+Welcome to Groceyish, your one-stop solution for all your daily grocery needs. 
+
+
+### Technologies Used
+
+- Frontend: Next.js, Tailwind
+- Backend: Node.js,
+- Database: MongoDB
+- Deployment: Vercel
+
 
 ### Getting Started
 
