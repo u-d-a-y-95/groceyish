@@ -46,7 +46,7 @@ export const OfferProductCard = ({
           </div>
         </div>
         <button
-          className="bg-primary text-white flex items-center self-stretch justify-center p-2 rounded disabled:cursor-not-allowed"
+          className="bg-primary text-white flex items-center self-stretch justify-center p-2 rounded disabled:cursor-not-allowed disabled:bg-gray-400"
           disabled
         >
           <ShoppingCartIcon className="w-4 aspect-square" />

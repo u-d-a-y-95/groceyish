@@ -1,10 +1,11 @@
 "use client";
 
-import React, { createContext, useContext, useReducer } from "react";
+import React, { createContext, useContext, useEffect, useReducer } from "react";
 import { stateReducer } from "./reducer";
 import { StateType } from "@/helper/dtos/state.dto";
+import { INIT_STORE } from "./actionType";
 
-const initialState: StateType = {
+const initialState: any = {
   cart: [],
 };
 
@@ -18,6 +19,24 @@ export const GlobalContext = createContext<{
 
 export const Provider = ({ children }: any) => {
   const [state, dispatch] = useReducer(stateReducer, initialState);
+
+  useEffect(() => {
+    let data = localStorage.getItem("groceyish-cart") || false;
+    if (data) {
+      data = atob(data);
+      dispatch({
+        type: INIT_STORE,
+        value: JSON.parse(data) || initialState,
+      });
+    }
+  }, []);
+
+  useEffect(() => {
+    let data = JSON.stringify(state);
+    data = btoa(data);
+    localStorage.setItem("groceyish-cart", data);
+  }, [state]);
+
   return (
     <GlobalContext.Provider value={{ state, dispatch }}>
       {children}

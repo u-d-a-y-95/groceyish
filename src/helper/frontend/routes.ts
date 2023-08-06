@@ -1,10 +1,4 @@
-import { ReactNode } from "react";
-import {
-  HomeIcon,
-  FireIcon,
-  SwatchIcon,
-  GiftIcon,
-} from "@heroicons/react/24/outline";
+import { HomeIcon, FireIcon, GiftIcon } from "@heroicons/react/24/outline";
 
 interface INavRoutes {
   label: string;

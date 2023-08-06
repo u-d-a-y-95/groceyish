@@ -1,8 +1,11 @@
 import { ActionType, StateType } from "@/helper/dtos/state.dto";
-import { ADD_TO_CART, REMOVE_FROM_CART } from "./actionType";
+import { ADD_TO_CART, INIT_STORE, REMOVE_FROM_CART } from "./actionType";
 
 export const stateReducer = (state: StateType, action: ActionType) => {
   switch (action.type) {
+    case INIT_STORE: {
+      return { ...action.value };
+    }
     case ADD_TO_CART: {
       const { cart } = state;
       const found = cart.find((prod) => prod.id === action.value._id);
@@ -11,7 +14,7 @@ export const stateReducer = (state: StateType, action: ActionType) => {
           found.count += 1;
           return { ...state, cart };
         }
-        return;
+        return { ...state };
       }
       cart.push({
         item: action.value,

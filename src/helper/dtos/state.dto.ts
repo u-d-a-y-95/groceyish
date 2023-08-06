@@ -13,10 +13,18 @@ export interface StateType {
 
 export type ActionType =
   | {
+      type: string;
+      value: any;
+    }
+  | {
       type: "ADD_TO_CART";
       value: IProduct;
     }
   | {
       type: "REMOVE_FROM_CART";
       value: string;
+    }
+  | {
+      type: "INIT_STORE";
+      value: Object;
     };
