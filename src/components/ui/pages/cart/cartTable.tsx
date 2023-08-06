@@ -17,7 +17,7 @@ export const CartTable = () => {
     dispatch({
       type: "ADD_TO_CART",
       value: {
-        id,
+        _id: id,
       },
     });
   };
@@ -39,6 +39,7 @@ export const CartTable = () => {
             <TH label="#" />
             <TH label="Image" />
             <TH label="Name" />
+            <TH label="Stock" />
             <TH label="Price" />
             <TH label="Quantity" />
             <TH label="Total" />
@@ -54,6 +55,7 @@ export const CartTable = () => {
                 </div>
               </td>
               <td className=" px-4">{item.name}</td>
+              <td className=" px-4">{item.stock}</td>
               <td className=" px-4">${item.price}</td>
               <td className=" px-4">
                 <button
@@ -66,13 +68,14 @@ export const CartTable = () => {
                 <span className=" mx-2 p-2 min-w-20 inline-block">{count}</span>
                 <button
                   type="button"
-                  className="border-none bg-primary text-white w-6 rounded"
+                  className="border-none bg-primary text-white w-6 rounded disabled:bg-gray-400 disabled:cursor-not-allowed"
                   onClick={(e) => addToCart(id)}
+                  disabled={item.stock <= count}
                 >
                   +
                 </button>
               </td>
-              <td className=" px-4">${item.price * count}</td>
+              <td className=" px-4">${(item.price * count).toFixed(2)}</td>
             </tr>
           ))}
         </tbody>

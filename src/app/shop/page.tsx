@@ -34,7 +34,7 @@ export default function ShopPage() {
   return (
     <div>
       <div className="flex flex-col lg:flex-row container mx-auto my-10 gap-10 px-5">
-        <div className="flex flex-col  min-w-[350px] lg:border-r pr-10">
+        <div className="flex flex-col  min-w-[300px] lg:border-r pr-10">
           <div className="text-xl font-semibold border-b pb-2">Filter</div>
 
           <form

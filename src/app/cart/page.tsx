@@ -7,7 +7,6 @@ import Link from "next/link";
 export default function CartPage() {
   const {
     state: { cart },
-    dispatch,
   } = useGlobalContext();
   if (cart.length < 1) {
     return (

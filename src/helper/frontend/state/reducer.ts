@@ -7,8 +7,11 @@ export const stateReducer = (state: StateType, action: ActionType) => {
       const { cart } = state;
       const found = cart.find((prod) => prod.id === action.value._id);
       if (found) {
-        found.count += 1;
-        return { ...state, cart };
+        if (found.count < found.item.stock) {
+          found.count += 1;
+          return { ...state, cart };
+        }
+        return;
       }
       cart.push({
         item: action.value,

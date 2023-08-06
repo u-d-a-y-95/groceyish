@@ -27,7 +27,7 @@ export const Header = () => {
               </Link>
             </div>
 
-            <div className="hidden lg:block">
+            <div className="hidden xl:block">
               <FilterButton />
             </div>
 

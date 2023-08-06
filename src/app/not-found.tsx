@@ -8,7 +8,7 @@ export default function NotFound() {
       <div className="relative w-full h-[300px] md:h-[500px]">
         <Image src="/img/notFound.svg" fill={true} alt="not found" />
       </div>
-      <Link className="text-priamry font-bold my-5" href="/">
+      <Link className="text-primary font-bold my-5 underline" href="/">
         Return Home
       </Link>
     </div>
