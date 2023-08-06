@@ -17,7 +17,7 @@ export const FlatProductCard = ({
 }: IFlatProductCardProps) => {
   return (
     <Link href={""}>
-      <div className="w-[200px] h-[100px] flex items-center gap-3 rounded">
+      <div className="w-full sm:w-[250px] h-[100px] flex items-center gap-3 rounded">
         <div className="relative w-[80px] aspect-square bg-gray-100 rounded">
           <Image src={url} alt="category" fill={true} />
         </div>

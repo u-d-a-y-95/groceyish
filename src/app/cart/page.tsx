@@ -11,9 +11,9 @@ export default function CartPage() {
   } = useGlobalContext();
   if (cart.length < 1) {
     return (
-      <div className="flex flex-col justify-center items-center text-4xl h-[400px] text-primary font-bold capitalize">
+      <div className="flex flex-col justify-center items-center text-2xl sm:text-4xl h-[400px]  font-bold capitalize">
         No product added
-        <Link href="/shop" className="underline text-sky-500 text-sm my-2">
+        <Link href="/shop" className="underline text-primary text-sm my-2">
           Go to shop
         </Link>
       </div>
