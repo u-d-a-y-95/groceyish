@@ -21,7 +21,7 @@ yarn dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [https://groceyish-shop.vercel.app/](https://groceyish-shop.vercel.app/) with your browser to see the result.
 
 ### Api Documentation
 
@@ -29,4 +29,4 @@ postman : [https://www.postman.com/bold-crescent-889349/workspace/groceyish]
 
 ## Deploy on Vercel
 
-visit: []
+visit: [https://groceyish-shop.vercel.app/]
