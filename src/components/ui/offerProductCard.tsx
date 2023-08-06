@@ -45,7 +45,10 @@ export const OfferProductCard = ({
             <span>${price}</span>
           </div>
         </div>
-        <button className="bg-primary text-white flex items-center self-stretch justify-center p-2 rounded">
+        <button
+          className="bg-primary text-white flex items-center self-stretch justify-center p-2 rounded disabled:cursor-not-allowed"
+          disabled
+        >
           <ShoppingCartIcon className="w-4 aspect-square" />
           Add to cart
         </button>

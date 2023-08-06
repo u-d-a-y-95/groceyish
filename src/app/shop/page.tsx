@@ -33,36 +33,42 @@ export default function ShopPage() {
   if (isLoading) return null;
   return (
     <div>
-      <div className="container mx-auto flex my-10 gap-10 px-5">
-        <div className="hidden lg:block min-w-[350px] border-r pr-10">
+      <div className="flex flex-col lg:flex-row container mx-auto my-10 gap-10 px-5">
+        <div className="flex flex-col  min-w-[350px] lg:border-r pr-10">
           <div className="text-xl font-semibold border-b pb-2">Filter</div>
 
-          <form onSubmit={handleSubmit(filterSubmitHandler)}>
-            <div className="mt-10 flex flex-col gap-6">
-              <div>
-                <p className="font-semibold mb-2">Sort</p>
-                <select className="border p-2 w-full" {...register("sort")}>
-                  <option value="">None</option>
-                  <option value="asc">Low to Hight</option>
-                  <option value="desc">High to Low</option>
-                </select>
+          <form
+            onSubmit={handleSubmit(filterSubmitHandler)}
+            className="w-full "
+          >
+            <div className="grid md:grid-cols-2 lg:grid-cols-1 justify-items-stretch mt-5 gap-6">
+              <div className="w-full md:w-auto flex flex-col gap-5">
+                <div className="w-full">
+                  <p className="font-semibold mb-2">Sort</p>
+                  <select className="border p-2 w-full" {...register("sort")}>
+                    <option value="">None</option>
+                    <option value="asc">Low to Hight</option>
+                    <option value="desc">High to Low</option>
+                  </select>
+                </div>
+                <div className="hidden md:block">
+                  <p className="font-semibold mb-2">Name</p>
+                  <input
+                    className="border p-2 w-full"
+                    placeholder="Enter product name"
+                    {...register("name")}
+                  />
+                </div>
+                <div className="hidden md:block">
+                  <p className="font-semibold mb-2">Price</p>
+                  <input
+                    className="border p-2 w-full"
+                    placeholder="enter price"
+                    {...register("price")}
+                  />
+                </div>
               </div>
-              <div>
-                <p className="font-semibold mb-2">Name</p>
-                <input
-                  className="border p-2 w-full"
-                  placeholder="Enter product name"
-                  {...register("name")}
-                />
-              </div>
-              <div>
-                <p className="font-semibold mb-2">Price</p>
-                <input
-                  className="border p-2 w-full"
-                  placeholder="enter price"
-                  {...register("price")}
-                />
-              </div>
+
               <div className="font-semibold mb-2">
                 <p className="font-semibold mb-2">Categories</p>
                 <div>
@@ -73,7 +79,10 @@ export default function ShopPage() {
                   />
                 </div>
               </div>
-              <button className="bg-primary text-white p-3" type="submit">
+              <button
+                className="bg-primary text-white p-3 justify-self-stretch"
+                type="submit"
+              >
                 Apply
               </button>
             </div>
