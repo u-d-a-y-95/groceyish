@@ -38,7 +38,7 @@ export const OrderSummary = () => {
             </tr>
             <tr className="border-t">
               <td className="font-bold text-xl py-5">Total</td>
-              <td className="font-bold text-xl">
+              <td className="font-bold text-xl text-right">
                 ${(subTotal + 5 + 2 - 0).toFixed(2)}
               </td>
             </tr>
