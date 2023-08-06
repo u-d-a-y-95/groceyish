@@ -62,8 +62,10 @@ export default function ShopPage() {
                 <div className="hidden md:block">
                   <p className="font-semibold mb-2">Price</p>
                   <input
+                    type="number"
                     className="border p-2 w-full"
                     placeholder="enter price"
+                    min="0"
                     {...register("price")}
                   />
                 </div>
