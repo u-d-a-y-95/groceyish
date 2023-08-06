@@ -1,4 +1,4 @@
-## Groceyish - Your Online Grocery Store
+## Groceyish Shop - Your Online Grocery Store
 
 Welcome to Groceyish, your one-stop solution for all your daily grocery needs. 
 
@@ -21,7 +21,7 @@ yarn dev
 pnpm dev
 ```
 
-Open [https://groceyish-shop.vercel.app/](https://groceyish-shop.vercel.app/) with your browser to see the result.
+Open [https://groceyish-shop.vercel.app/](Grceyish Shop) with your browser to see the result.
 
 ### Api Documentation
 
