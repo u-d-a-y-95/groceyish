@@ -1,5 +1,6 @@
 "use client";
 import { Rating } from "@/components/core/rating";
+import { Laoding } from "@/components/ui/loading";
 import { useGlobalContext } from "@/helper/frontend/state/globalContext";
 import { addToCart } from "@/helper/frontend/util";
 import Image from "next/image";
@@ -13,7 +14,7 @@ export default function ProductPage({ params }: { params: { id: string } }) {
 
   const { dispatch } = useGlobalContext();
   if (error) return <div>failed to load</div>;
-  if (isLoading) return <div>loading...</div>;
+  if (isLoading) return <Laoding />;
 
   const onClickHandler = (e: any) => {
     e.preventDefault();

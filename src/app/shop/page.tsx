@@ -1,5 +1,6 @@
 "use client";
 import { CheckBox } from "@/components/core/checkBox";
+import { Laoding } from "@/components/ui/loading";
 import { ProductsList } from "@/components/ui/pages/shop/productsList";
 import { categoryFetcher, productFetcher } from "@/helper/frontend/apiHelper";
 import { queryFromObject } from "@/helper/frontend/util";
@@ -30,7 +31,7 @@ export default function ShopPage() {
     setPageNo(0);
     setPath(queryFromObject(value));
   };
-  if (isLoading) return null;
+  if (isLoading) return <Laoding />;
   return (
     <div>
       <div className="flex flex-col lg:flex-row container mx-auto my-10 gap-10 px-5">
